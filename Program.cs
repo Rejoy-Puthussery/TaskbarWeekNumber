@@ -12,38 +12,38 @@ namespace TaskbarWeekNumber
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(true);
-            Application.Run(new MyCustomApplicationContext());
+            Application.Run(new WeekNumberAppContext());
         }
 
     }
 
     //System.Windows.Forms
-    public class MyCustomApplicationContext : ApplicationContext
+    public class WeekNumberAppContext : ApplicationContext
     {
         private readonly NotifyIcon trayIcon;
         private readonly ContextMenu contextMenu1;
         private readonly MenuItem menuItem1;
         private readonly System.ComponentModel.IContainer components;
 
-        public MyCustomApplicationContext()
+        public WeekNumberAppContext()
         {
             components = new System.ComponentModel.Container();
-            this.contextMenu1 = new System.Windows.Forms.ContextMenu();
-            this.menuItem1 = new System.Windows.Forms.MenuItem();
-            // Initialize contextMenu1
-            this.contextMenu1.MenuItems.AddRange(
-                        new System.Windows.Forms.MenuItem[] { this.menuItem1 });
-            // Initialize menuItem1
-            this.menuItem1.Index = 0;
-            this.menuItem1.Text = "Exit";
-            this.menuItem1.Click += new System.EventHandler(this.Exit);
+            contextMenu1 = new ContextMenu();
+            menuItem1 = new MenuItem();
+            // Initialize contextMenu
+            contextMenu1.MenuItems.AddRange(
+                        new MenuItem[] { this.menuItem1 });
+            // Initialize context menuItem
+            menuItem1.Index = 0;
+            menuItem1.Text = "Exit";
+            menuItem1.Click += new EventHandler(this.Exit);
 
 
             // Initialize Tray Icon
-            this.trayIcon = new System.Windows.Forms.NotifyIcon(this.components);
-            int weekNumber = this.GetWeekNumber();
+            trayIcon = new NotifyIcon(this.components);
+            int weekNumber = GetWeekNumber();
             trayIcon.Icon = GetIcon(""+weekNumber);
-            trayIcon.ContextMenu = this.contextMenu1;
+            trayIcon.ContextMenu = contextMenu1;
             trayIcon.Text = "Week Number";
             trayIcon.Visible = true;
         }
