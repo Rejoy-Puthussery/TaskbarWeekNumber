@@ -32,28 +32,36 @@ namespace TaskbarWeekNumber
             menuItem1 = new MenuItem();
             // Initialize contextMenu
             contextMenu1.MenuItems.AddRange(
-                        new MenuItem[] { this.menuItem1 });
+                        new MenuItem[] { menuItem1 });
             // Initialize context menuItem
             menuItem1.Index = 0;
             menuItem1.Text = "Exit";
-            menuItem1.Click += new EventHandler(this.Exit);
-
+            menuItem1.Click += new EventHandler(Exit);
 
             // Initialize Tray Icon
-            trayIcon = new NotifyIcon(this.components);
-            int weekNumber = GetWeekNumber();
-            trayIcon.Icon = GetIcon(""+weekNumber);
-            trayIcon.ContextMenu = contextMenu1;
-            trayIcon.Text = "Week Number";
-            trayIcon.Visible = true;
+            trayIcon = new NotifyIcon(components)
+            {
+                ContextMenu = contextMenu1,
+                Visible = true
+            };
+            SetWeekNumberIconAndTooltip();
+            trayIcon.MouseMove += new MouseEventHandler(UpdateInfo);
         }
-        private int GetWeekNumber()
+       
+        private void SetWeekNumberIconAndTooltip()
         {
-            CultureInfo myCI = new CultureInfo("de-DE");
+            CultureInfo myCI = new CultureInfo(CultureInfo.CurrentCulture.Name);
             Calendar myCal = myCI.Calendar;
             CalendarWeekRule myCWR = myCI.DateTimeFormat.CalendarWeekRule;
             DayOfWeek myFirstDOW = myCI.DateTimeFormat.FirstDayOfWeek;
-            return myCal.GetWeekOfYear(DateTime.Now, myCWR, myFirstDOW);
+            int weekNumber = myCal.GetWeekOfYear(DateTime.Now, myCWR, myFirstDOW);
+            trayIcon.Icon = GetIcon("" + weekNumber);
+            trayIcon.Text = "Date: " + DateTime.Now.ToString("dd/MM/yyyy")+"\nTime: " + DateTime.Now.ToString("h:mm:ss tt") + "\nWeek: " + myCal.GetWeekOfYear(DateTime.Now, myCWR, myFirstDOW);
+        }
+
+        private void UpdateInfo(object sender, MouseEventArgs e)
+        {
+            SetWeekNumberIconAndTooltip();
         }
 
         //System.Drawing package
