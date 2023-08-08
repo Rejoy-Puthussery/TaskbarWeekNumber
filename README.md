@@ -6,8 +6,8 @@ The builtin calendar app in the windows taskbar does not show the week number in
 This small script creates a taskbar entry with the current week number
 
 # Installation
-One way to install the script is to clone the repo and build using Visual Studio.
-Another way is to download the released executable and double click to run it.
+Easiest way is to download the released executable and double click to run it.
+Geekiest way to install the script is to clone the repo and build using Visual Studio :)
 
 # Stopping the script
 Right Click on the tray icon and click on exit
