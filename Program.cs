@@ -55,8 +55,10 @@ namespace TaskbarWeekNumber
             CalendarWeekRule myCWR = myCI.DateTimeFormat.CalendarWeekRule;
             DayOfWeek myFirstDOW = myCI.DateTimeFormat.FirstDayOfWeek;
             int weekNumber = myCal.GetWeekOfYear(DateTime.Now, myCWR, myFirstDOW);
-            trayIcon.Icon = GetIcon("" + weekNumber);
-            trayIcon.Text = "Date: " + DateTime.Now.ToString("dd/MM/yyyy")+"\nTime: " + DateTime.Now.ToString("h:mm:ss tt") + "\nWeek: " + myCal.GetWeekOfYear(DateTime.Now, myCWR, myFirstDOW);
+            int weekDayNumber = (int)DateTime.Today.DayOfWeek;
+            string weekDay = weekNumber + "." + weekDayNumber;
+            trayIcon.Icon = GetIcon(""+weekNumber);
+            trayIcon.Text = "Date: " + DateTime.Now.ToString("dd/MM/yyyy") + "\nTime: " + DateTime.Now.ToString("h:mm:ss tt") + "\nDay: " + DateTime.Now.ToString("ddd") + "\nWeek: " + weekDay;
         }
 
         private void UpdateInfo(object sender, MouseEventArgs e)
@@ -68,13 +70,14 @@ namespace TaskbarWeekNumber
         private Icon GetIcon(string text)
         {
             Bitmap bitmap = new Bitmap(32,32);
-            Font drawFont = new Font("3ds", 16, FontStyle.Bold);
+            Font drawFont = new Font("Microsoft Sans Serif", 26, FontStyle.Bold, GraphicsUnit.Pixel);
             SolidBrush drawBrush = new SolidBrush(Color.LightGreen);
 
             Graphics graphics = Graphics.FromImage(bitmap);
 
-            graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            graphics.DrawString(text, drawFont, drawBrush, 1, 2);
+            graphics.Clear(Color.Transparent);
+            graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SingleBitPerPixelGridFit;
+            graphics.DrawString(text, drawFont, drawBrush,-4,2);
             Icon createdIcon = Icon.FromHandle(bitmap.GetHicon());
 
             drawFont.Dispose();
