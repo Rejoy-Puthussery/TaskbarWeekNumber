@@ -52,9 +52,9 @@ namespace TaskbarWeekNumber
         {
             CultureInfo myCI = new CultureInfo(CultureInfo.CurrentCulture.Name);
             Calendar myCal = myCI.Calendar;
-            CalendarWeekRule myCWR = myCI.DateTimeFormat.CalendarWeekRule;
-            DayOfWeek myFirstDOW = myCI.DateTimeFormat.FirstDayOfWeek;
-            int weekNumber = myCal.GetWeekOfYear(DateTime.Now, myCWR, myFirstDOW);
+            //CalendarWeekRule myCWR = myCI.DateTimeFormat.CalendarWeekRule;
+            //DayOfWeek myFirstDOW = myCI.DateTimeFormat.FirstDayOfWeek;
+            int weekNumber = myCal.GetWeekOfYear(DateTime.Now, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
             int weekDayNumber = (int)DateTime.Today.DayOfWeek;
             string weekDay = weekNumber + "." + weekDayNumber;
             trayIcon.Icon = GetIcon(""+weekNumber);
