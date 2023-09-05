@@ -1,6 +1,6 @@
 # Windows TaskbarWeekNumber
-A simple taskbar notification to show the current week number of the year
-![alt text](https://github.com/Rejoy-Puthussery/TaskbarWeekNumber/blob/2ff9b4a56037ae8cc1a8a3b9b9f4ab2c6d6137d6/TaskWeekNumberGIF.gif)
+A simple taskbar notification to show the current week number of the year <br>
+![alt text](https://github.com/Rejoy-Puthussery/TaskbarWeekNumber/blob/f2426cd0d91074ed2509c248fdd54dbfad9d9885/TaskWeekNumberGIF.gif)
 
 # What the script does
 The builtin calendar app in the windows taskbar does not show the week number in the calendar widget.
