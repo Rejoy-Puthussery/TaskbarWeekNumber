@@ -71,7 +71,7 @@ namespace TaskbarWeekNumber
         {
             Bitmap bitmap = new Bitmap(32,32);
             Font drawFont = new Font("Microsoft Sans Serif", 26, FontStyle.Bold, GraphicsUnit.Pixel);
-            SolidBrush drawBrush = new SolidBrush(Color.LightGreen);
+            SolidBrush drawBrush = new SolidBrush(Color.OrangeRed);
 
             Graphics graphics = Graphics.FromImage(bitmap);
 
